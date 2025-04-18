@@ -136,7 +136,7 @@ export default function Game() {
               alt={`Mimizuki niveau ${imageIndex + 1}`}
               width={300}
               height={300}
-              className="rounded shadow border-4 border-green-400 hover:scale-105 transition max-w-xs"
+              className="rounded shadow border-4 border-green-400 hover:scale-105 transition max-w-xs bg-green-200"
             />
           </motion.div>
 

@@ -5,8 +5,8 @@ export const tdStyle = cva(
   {
     variants: {
       position: {
-        head: "bg-green-200 font-semibold",
-        body: "bg-green-100",
+        head: "bg-green-200 font-semibold text-green-900",
+        body: "bg-green-100 text-green-900",
         first: "bg-green-300 font-bold text-green-900",
       },
     },
