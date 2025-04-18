@@ -7,6 +7,7 @@ import clsx from "clsx";
 const links = [
   { href: "/", label: "🐢 Accueil" },
   { href: "/game", label: "OMICIDE 🎮" },
+  { href: "/submit-text", label: "Blog" },
 ];
 
 export default function Navbar() {

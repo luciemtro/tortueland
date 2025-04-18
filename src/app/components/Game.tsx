@@ -92,7 +92,7 @@ export default function Game() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8">
+    <div className="flex flex-col items-center mt-8 ">
       {!started && (
         <button
           onClick={() => {
