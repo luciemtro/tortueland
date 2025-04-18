@@ -112,7 +112,7 @@ export default function Game() {
               handleHit();
               spawnClickEffect(e);
             }}
-            className="mt-6 cursor-pointer select-none relative w-fit"
+            className="mt-6 cursor-pointer select-none relative w-fit touch-manipulation"
             animate={{ x: [0, -5, 5, -5, 0] }}
             transition={{ duration: 0.2 }}
             key={hits}
