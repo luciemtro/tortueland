@@ -22,7 +22,7 @@ const fredoka = Fredoka({
 
 export const metadata: Metadata = {
   title: "Tortue Land",
-  description: "Le jeu de baston de Mimizuki 🐢",
+  description: "Bienvenue sur tortueLand🐢",
 };
 
 export default function RootLayout({
