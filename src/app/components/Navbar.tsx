@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const links = [
-  { href: "/", label: "Accueil 🐢" },
-  { href: "/game", label: "Jeu 🎮" },
+  { href: "/", label: "🐢 Accueil" },
+  { href: "/game", label: "OMICIDE 🎮" },
 ];
 
 export default function Navbar() {

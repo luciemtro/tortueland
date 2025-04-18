@@ -96,10 +96,10 @@ export default function Game() {
       {!started && (
         <button
           onClick={() => {
-            setHasInteracted(true); // déverrouille les sons !
+            setHasInteracted(true);
             handleStart();
           }}
-          className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition"
+          className="text-white px-6 py-2 rounded shadow hover:scale-105 transition cursor-pointer uppercase animate-[colorFlash_0.8s_linear_infinite] font-extrabold tracking-widest"
         >
           Commencer la baston ! 🐢
         </button>

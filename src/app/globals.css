@@ -28,3 +28,20 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
 }
+@keyframes colorFlash {
+  0% {
+    background-color: #22c55e; /* green-500 */
+  }
+  25% {
+    background-color: #10b981; /* emerald-500 */
+  }
+  50% {
+    background-color: #4ade80; /* green-400 */
+  }
+  75% {
+    background-color: #16a34a; /* green-600 */
+  }
+  100% {
+    background-color: #22c55e;
+  }
+}
