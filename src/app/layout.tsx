@@ -34,13 +34,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${lilita.variable} ${fredoka.variable}`}>
       <Head>
-        {/* Configuration du viewport pour désactiver le zoom */}
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
         />
-        {/* Autres balises meta ou liens */}
       </Head>
+
       <body className="bg-green-50 text-gray-800 font-sans">
         <Navbar />
         <main>{children}</main>
