@@ -16,11 +16,12 @@ export default function Game() {
   const [pseudo, setPseudo] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [clickEffects, setClickEffects] = useState<
     { x: number; y: number; id: string }[]
   >([]);
 
-  useMimizukiSounds(hits);
+  useMimizukiSounds(hits, hasInteracted);
 
   // ✅ Précharger les images au chargement de la page
   useEffect(() => {
@@ -94,7 +95,10 @@ export default function Game() {
     <div className="flex flex-col items-center mt-8">
       {!started && (
         <button
-          onClick={handleStart}
+          onClick={() => {
+            setHasInteracted(true); // déverrouille les sons !
+            handleStart();
+          }}
           className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition"
         >
           Commencer la baston ! 🐢
