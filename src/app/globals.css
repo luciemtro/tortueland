@@ -45,20 +45,19 @@ body {
     background-color: #22c55e;
   }
 }
-@layer components {
-  .tortueland::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%); /* Centre l'image horizontalement */
-    width: 100%; /* Ajuste la taille de l'image */
-    height: 600; /* Garde les proportions */
-    background-image: url("/images/tortuechill.png");
-    background-size: contain; /* Garder les proportions sans déformation */
-    background-position: center;
-    opacity: 0.6; /* Tu peux ajuster l'opacité ici */
-    z-index: 2; /* Pour garder l'image en arrière-plan */
-    background-repeat: no-repeat;
-  }
+
+.tortueland::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Centre l'image horizontalement */
+  width: 100%; /* Ajuste la taille de l'image */
+  height: 600; /* Garde les proportions */
+  background-image: url("/images/tortuechill.png");
+  background-size: contain; /* Garder les proportions sans déformation */
+  background-position: center;
+  opacity: 0.6; /* Tu peux ajuster l'opacité ici */
+  z-index: 2; /* Pour garder l'image en arrière-plan */
+  background-repeat: no-repeat;
 }
