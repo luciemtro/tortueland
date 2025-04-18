@@ -29,6 +29,7 @@ export default function WritePage() {
       setMessage("Citation enregistrée avec succès 🎉");
       setText("");
       setAuthor("");
+      window.location.reload();
     }
   };
 
