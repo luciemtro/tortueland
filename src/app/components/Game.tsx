@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMimizukiSounds } from "../../hooks/useMimizukiSounds";
@@ -16,12 +16,19 @@ export default function Game() {
   const [pseudo, setPseudo] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
-
   const [clickEffects, setClickEffects] = useState<
     { x: number; y: number; id: string }[]
   >([]);
 
   useMimizukiSounds(hits);
+
+  // ✅ Précharger les images au chargement de la page
+  useEffect(() => {
+    for (let i = 1; i <= IMAGE_COUNT; i++) {
+      const img = new window.Image();
+      img.src = `/images/omi0${i}.png`;
+    }
+  }, []);
 
   const playClickSound = () => {
     const shots = ["shot01", "shot02", "shot03"];
@@ -106,20 +113,20 @@ export default function Game() {
             transition={{ duration: 0.2 }}
             key={hits}
           >
-            {/* Effets visuels en GIF */}
+            {/* 🎯 Effets visuels en GIF (plus gros sur mobile) */}
             {clickEffects.map((effect) => (
               <Image
                 key={effect.id}
                 src="/gifs/impact.gif"
                 alt="Impact"
-                width={40}
-                height={40}
-                className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+                width={200}
+                height={200}
+                className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[90] w-24 h-24 sm:w-40 sm:h-40"
                 style={{ left: effect.x, top: effect.y }}
               />
             ))}
 
-            {/* Image de Mimizuki */}
+            {/* 🥊 Image de Mimizuki */}
             <Image
               src={`/images/omi0${imageIndex + 1}.png`}
               alt={`Mimizuki niveau ${imageIndex + 1}`}
