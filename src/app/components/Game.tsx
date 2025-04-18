@@ -38,10 +38,12 @@ export default function Game() {
     audio.play();
   };
 
-  const spawnClickEffect = (e: React.MouseEvent) => {
+  const spawnClickEffect = (e: React.MouseEvent | React.TouchEvent) => {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const x =
+      "clientX" in e ? e.clientX - rect.left : e.touches[0].clientX - rect.left;
+    const y =
+      "clientY" in e ? e.clientY - rect.top : e.touches[0].clientY - rect.top;
     const id = crypto.randomUUID();
 
     setClickEffects((prev) => [...prev, { x, y, id }]);
@@ -136,7 +138,16 @@ export default function Game() {
               alt={`Mimizuki niveau ${imageIndex + 1}`}
               width={300}
               height={300}
-              className="rounded shadow border-4 border-green-400 hover:scale-105 transition max-w-xs bg-green-200"
+              className="rounded shadow border-4 border-green-400 hover:scale-105 transition max-w-xs touch-none"
+              onClick={(e: React.MouseEvent) => {
+                handleHit();
+                spawnClickEffect(e);
+              }}
+              onTouchStart={(e: React.TouchEvent) => {
+                e.preventDefault(); // Évite le zoom au tapotage
+                handleHit();
+                spawnClickEffect(e);
+              }}
             />
           </motion.div>
 
