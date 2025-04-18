@@ -89,6 +89,7 @@ export default function Game() {
     });
 
     if (res.ok) setSubmitted(true);
+    window.location.reload();
   };
 
   return (
