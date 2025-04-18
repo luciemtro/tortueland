@@ -17,7 +17,31 @@ export default function Game() {
   const [submitted, setSubmitted] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
 
+  const [clickEffects, setClickEffects] = useState<
+    { x: number; y: number; id: string }[]
+  >([]);
+
   useMimizukiSounds(hits);
+
+  const playClickSound = () => {
+    const shots = ["shot01", "shot02", "shot03"];
+    const random = shots[Math.floor(Math.random() * shots.length)];
+    const audio = new Audio(`/sounds/${random}.mp3`);
+    audio.play();
+  };
+
+  const spawnClickEffect = (e: React.MouseEvent) => {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const id = crypto.randomUUID();
+
+    setClickEffects((prev) => [...prev, { x, y, id }]);
+
+    setTimeout(() => {
+      setClickEffects((prev) => prev.filter((effect) => effect.id !== id));
+    }, 1000);
+  };
 
   const handleStart = () => {
     setHits(0);
@@ -30,16 +54,17 @@ export default function Game() {
   };
 
   const handleHit = () => {
-    if (!started || endTime) return;
+    if (!started || endTime || hits >= 175) return;
 
     const newHits = hits + 1;
     setHits(newHits);
+    playClickSound();
 
     const nextIndex = HIT_THRESHOLDS.findIndex((thresh) => newHits < thresh);
     const index = nextIndex === -1 ? IMAGE_COUNT - 1 : nextIndex - 1;
     setImageIndex(index);
 
-    if (index === IMAGE_COUNT - 1) {
+    if (newHits === 175) {
       setEndTime(Date.now());
     }
   };
@@ -72,12 +97,29 @@ export default function Game() {
       {started && (
         <>
           <motion.div
-            onClick={handleHit}
-            className="mt-6 cursor-pointer select-none"
+            onClick={(e) => {
+              handleHit();
+              spawnClickEffect(e);
+            }}
+            className="mt-6 cursor-pointer select-none relative w-fit"
             animate={{ x: [0, -5, 5, -5, 0] }}
             transition={{ duration: 0.2 }}
             key={hits}
           >
+            {/* Effets visuels en GIF */}
+            {clickEffects.map((effect) => (
+              <Image
+                key={effect.id}
+                src="/gifs/impact.gif"
+                alt="Impact"
+                width={40}
+                height={40}
+                className="absolute pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+                style={{ left: effect.x, top: effect.y }}
+              />
+            ))}
+
+            {/* Image de Mimizuki */}
             <Image
               src={`/images/omi0${imageIndex + 1}.png`}
               alt={`Mimizuki niveau ${imageIndex + 1}`}
