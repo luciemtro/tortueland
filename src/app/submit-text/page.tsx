@@ -20,13 +20,15 @@ export default function WritePage() {
     });
 
     if (error) {
-      console.error(error);
+      console.error("Erreur d'insertion dans Supabase : ", error.message); // Ajout de .message
+
       setMessage("Oups ! Une erreur s’est produite ❌");
     } else {
+      console.log("Citation insérée avec succès");
+
       setMessage("Citation enregistrée avec succès 🎉");
       setText("");
       setAuthor("");
-      window.location.reload();
     }
   };
 
