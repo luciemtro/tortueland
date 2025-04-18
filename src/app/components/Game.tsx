@@ -158,11 +158,11 @@ export default function Game() {
                 placeholder="Entre ton pseudo"
                 value={pseudo}
                 onChange={(e) => setPseudo(e.target.value)}
-                className="px-4 py-2 border border-green-400 rounded"
+                className="px-4 py-2 border border-green-400 rounded bg-green-50 text-emerald-900"
               />
               <button
                 onClick={handleSubmit}
-                className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition"
+                className="bg-green-700 uppercase text-white px-4 py-2 rounded hover:bg-green-800 transition cursor-pointer animate-[colorFlash_0.8s_linear_infinite] border-white border-2"
               >
                 Envoyer
               </button>
@@ -177,7 +177,7 @@ export default function Game() {
 
           <button
             onClick={handleStart}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition cursor-pointer"
           >
             🔁 Rejouer
           </button>
